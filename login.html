@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | VIRAT-7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+  <div class="login-card">
+
+    <h2>VIRAT-7</h2>
+    <p class="subtitle">Apartment Management Login</p>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="User ID / Email"
+      required
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      required
+    >
+
+    <button onclick="login()">Login</button>
+
+    <p class="note">
+      Contact admin if you forgot your password
+    </p>
+
+  </div>
+
+  <!-- Firebase Login Logic -->
+  <script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* ===== PROFILE PAGE CSS ===== */
+.profile-page {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.profile-content {
+  flex: 1;
+}
+
+.logout-btn {
+  margin-top: auto;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.profile-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.profile-flat {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* DETAILS */
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* SIGN OUT BUTTON */
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: auto;   /* 🔑 MAGIC LINE */
+}
+
+.dues-container {
+  min-height: calc(100vh - 60px); /* header height */
+  display: flex;
+  flex-direction: column;
+}

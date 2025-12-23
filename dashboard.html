@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | VIRAT-7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Dashboard CSS -->
+  <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/dashboard.css">
+  
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+</head>
+
+<!-- ===== RIGHT SIDE MENU ===== -->
+<div class="right-menu" id="rightMenu">
+
+  <div class="menu-top">
+    <div class="avatar">S</div>
+    <div>
+      <div class="menu-name">Saksham Sharma</div>
+      <div class="menu-flat">Flat A-101</div>
+    </div>
+  </div>
+
+  <div class="menu-list">
+    <div class="menu-row" onclick="goToPage('../dashboard.html')">
+      🏠 <span>Dashboard</span>
+    </div>
+
+    <div class="menu-row" onclick="goToPage('html/dues.html')">
+      💰 <span>My Dues</span>
+    </div>
+
+    <div class="menu-row" onclick="goToPage('html/bills.html')">
+      📄 <span>Monthly Bills</span>
+    </div>
+
+    <div class="menu-row" onclick="goToPage('html/notices.html')">
+      📢 <span>Notice Board</span>
+    </div>
+
+    <div class="menu-row" onclick="goToPage('html/profile.html')">
+      👤 <span>Profile</span>
+    </div>
+  </div>
+
+  <div class="menu-row logout" onclick="logout()">
+    🚪 <span>Logout</span>
+  </div>
+
+</div>
+
+<!-- OVERLAY -->
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+<script>
+function openMenu() {
+  document.getElementById("rightMenu").classList.add("open");
+  document.getElementById("menuBackdrop").classList.add("show");
+}
+
+function closeMenu() {
+  document.getElementById("rightMenu").classList.remove("open");
+  document.getElementById("menuBackdrop").classList.remove("show");
+}
+
+function goToPage(page) {
+  window.location.href = page;
+}
+
+function logout() {
+  window.location.href = "login.html";
+}
+</script>
+
+<script>
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
+
+const menu = document.getElementById("rightMenu");
+
+// Touch start
+menu.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+// Touch move
+menu.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+  currentX = e.touches[0].clientX;
+  const diffX = currentX - startX;
+
+  // Only allow swipe RIGHT
+  if (diffX > 0) {
+    menu.style.transform = `translateX(${diffX}px)`;
+  }
+});
+
+// Touch end
+menu.addEventListener("touchend", () => {
+  isDragging = false;
+  const diffX = currentX - startX;
+
+  // If swipe distance > 80px → close menu
+  if (diffX > 80) {
+    closeMenu();
+  }
+
+  // Reset position
+  menu.style.transform = "translateX(0)";
+});
+</script>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="dashboard-header">
+
+  <!-- LEFT -->
+  <div class="header-left brand">
+  <a href="dashboard.html" class="logo-link">
+    <img src="assets/logo.png" alt="VIRAT-7 Logo" class="brand-logo">
+  </a>
+</div>
+
+  <!-- CENTER -->
+  <div class="header-center">
+    <div class="user-info">
+      <div class="user-name">Saksham Sharma</div>
+      <div class="flat-info">Flat A-101</div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="header-right">
+    <i class="fa-solid fa-bell"></i>
+    <div class="profile-avatar">S</div>
+    <i class="fa-solid fa-bars" onclick="openMenu()"></i>
+  </div>
+
+</header>
+
+<!-- ===== MAIN DASHBOARD ===== -->
+<main class="dashboard">
+
+  <div class="card" onclick="alert('My Dues page')">
+    <i class="fa-solid fa-wallet"></i>
+    <h3>My Dues</h3>
+    <p>Check pending maintenance dues</p>
+  </div>
+
+  <div class="card" onclick="alert('Monthly Bills page')">
+    <i class="fa-solid fa-file-invoice"></i>
+    <h3>Monthly Bills</h3>
+    <p>Maintenance, Water, Electricity</p>
+  </div>
+
+  <div class="card" onclick="alert('Notice Board page')">
+    <i class="fa-solid fa-bullhorn"></i>
+    <h3>Notice Board</h3>
+    <p>Society announcements</p>
+  </div>
+
+  <div class="card" onclick="alert('Owner Details page')">
+    <i class="fa-solid fa-user"></i>
+    <h3>Owner Details</h3>
+    <p>View owner information</p>
+  </div>
+
+</main>
+
+</body>
+</html>

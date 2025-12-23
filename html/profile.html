@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile | VIRAT-7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- BASE + HEADER + PROFILE CSS -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="dashboard-header">
+    <a href="../dashboard.html" style="text-decoration:none;">← Back</a>
+    <h3>Profile</h3>
+  </header>
+
+  <!-- PROFILE PAGE WRAPPER -->
+  <main class="profile-page">
+
+    <!-- CONTENT -->
+    <div class="profile-content">
+
+      <!-- PROFILE CARD -->
+      <div class="profile-card">
+        <div class="profile-avatar">S</div>
+        <h3>Saksham Sharma</h3>
+        <p class="profile-flat">Flat A-101</p>
+      </div>
+
+      <!-- DETAILS -->
+      <div class="section">
+        <div class="profile-row">
+          <span>Mobile Number</span>
+          <span>+91 98765 43210</span>
+        </div>
+
+        <div class="profile-row">
+          <span>User ID</span>
+          <span>saksham@virat7.com</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIGN OUT BUTTON (BOTTOM FIXED) -->
+    <button class="logout-btn" onclick="logout()">Sign Out</button>
+
+  </main>
+
+  <script>
+    function logout() {
+      window.location.href = "../login.html";
+    }
+  </script>
+
+</body>
+</html>

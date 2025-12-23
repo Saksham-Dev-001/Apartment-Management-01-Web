@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notice Board | VIRAT-7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS FILES (ORDER MATTERS) -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/notices.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="dashboard-header">
+    <a href="../dashboard.html" class="back-btn">← Back</a>
+    <h3>Notice Board</h3>
+  </header>
+
+  <!-- PAGE WRAPPER -->
+  <main class="notices-page">
+
+    <!-- ADMIN BOX (HIDDEN BY DEFAULT) -->
+    <div class="notice-admin" id="adminNoticeBox">
+      <h4>Post New Notice</h4>
+      <textarea placeholder="Write notice here..."></textarea>
+      <button>Post Notice</button>
+    </div>
+
+    <!-- NOTICE LIST -->
+    <div class="notice-list">
+
+      <div class="notice-card">
+        <h5>Water Supply Notice</h5>
+        <p>Water supply will be unavailable on 24 Aug from 10 AM to 2 PM.</p>
+        <span class="notice-date">22 Aug 2025</span>
+      </div>
+
+      <div class="notice-card">
+        <h5>Maintenance Reminder</h5>
+        <p>Please clear pending maintenance dues before month end.</p>
+        <span class="notice-date">20 Aug 2025</span>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
