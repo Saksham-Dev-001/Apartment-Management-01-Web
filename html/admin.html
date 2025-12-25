@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel | VIRAT-7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="app-header">
+  <button class="icon-circle" onclick="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+
+  <h3 class="page-title">Admin Panel</h3>
+
+  <button class="icon-circle" onclick="openMenu()">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="admin-dashboard">
+
+  <div class="admin-card" onclick="location.href='notices.html'">
+    <i class="fa-solid fa-bullhorn"></i>
+    <h4>Post Notice</h4>
+    <p>Create & publish society notices</p>
+  </div>
+
+  <div class="admin-card" onclick="location.href='users.html'">
+    <i class="fa-solid fa-users"></i>
+    <h4>Manage Users</h4>
+    <p>View & control apartment users</p>
+  </div>
+
+  <div class="admin-card" onclick="location.href='maintenance.html'">
+    <i class="fa-solid fa-screwdriver-wrench"></i>
+    <h4>Maintenance</h4>
+    <p>Set dues & track payments</p>
+  </div>
+
+  <div class="admin-card" onclick="location.href='payments.html'">
+    <i class="fa-solid fa-credit-card"></i>
+    <h4>Payments</h4>
+    <p>Monitor all transactions</p>
+  </div>
+
+</main>
+
+<!-- ================= JS ================= -->
+<script>
+  function goBack() {
+    history.back();
+  }
+
+  function openMenu() {
+    alert("Menu will open (already exists in dashboard)");
+  }
+</script>
+
+</body>
+</html>

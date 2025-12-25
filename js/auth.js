@@ -1,23 +1,29 @@
 import { auth } from "./firebase.js";
-import { signInWithEmailAndPassword } from
-"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-window.login = function () {
+/* LOGIN */
+window.login = async function () {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    alert("Enter email and password");
+    alert("Please enter email and password");
     return;
   }
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      // SUCCESS
-      window.location.href = "dashboard.html";
-    })
-    .catch((error) => {
-      console.error(error);
-      alert(error.message);
-    });
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+/* LOGOUT */
+window.logout = async function () {
+  await signOut(auth);
+  window.location.href = "login.html";
 };

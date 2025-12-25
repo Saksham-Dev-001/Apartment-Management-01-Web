@@ -5,58 +5,156 @@
   <title>Profile | VIRAT-7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- BASE + HEADER + PROFILE CSS -->
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Dashboard CSS -->
   <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+
+  <style>
+    .profile-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      max-width: 420px;
+      margin: auto;
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #5a67d8;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      margin-bottom: 14px;
+    }
+
+    .profile-info {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .profile-info div {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #e53e3e;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="dashboard-header">
-    <a href="../dashboard.html" style="text-decoration:none;">← Back</a>
-    <h3>Profile</h3>
-  </header>
+<!-- ================= HEADER ================= -->
+<header class="app-header">
+  <button class="icon-circle" onclick="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
 
-  <!-- PROFILE PAGE WRAPPER -->
-  <main class="profile-page">
+  <h3 class="page-title">Profile</h3>
 
-    <!-- CONTENT -->
-    <div class="profile-content">
+  <!-- Empty spacer to keep title centered -->
+  <div style="width:42px"></div>
+</header>
 
-      <!-- PROFILE CARD -->
-      <div class="profile-card">
-        <div class="profile-avatar">S</div>
-        <h3>Saksham Sharma</h3>
-        <p class="profile-flat">Flat A-101</p>
+<!-- ================= MAIN ================= -->
+<main style="padding:20px">
+
+  <div class="profile-card">
+
+    <div class="profile-avatar" id="avatar">S</div>
+
+    <h3 id="pName">Saksham Sharma</h3>
+    <small id="pRole">Resident</small>
+
+    <div class="profile-info">
+      <div>
+        <span>Email</span>
+        <span id="pEmail">hutch.saksham@gmail.com</span>
       </div>
-
-      <!-- DETAILS -->
-      <div class="section">
-        <div class="profile-row">
-          <span>Mobile Number</span>
-          <span>+91 98765 43210</span>
-        </div>
-
-        <div class="profile-row">
-          <span>User ID</span>
-          <span>saksham@virat7.com</span>
-        </div>
+      <div>
+        <span>Flat</span>
+        <span id="pFlat">G-1</span>
       </div>
-
+      <div>
+        <span>Phone</span>
+        <span id="pPhone">9351520926</span>
+      </div>
     </div>
 
-    <!-- SIGN OUT BUTTON (BOTTOM FIXED) -->
-    <button class="logout-btn" onclick="logout()">Sign Out</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
 
-  </main>
+</main>
 
-  <script>
-    function logout() {
+<!-- ================= FIREBASE ================= -->
+<script type="module">
+  import { auth, db } from "../js/firebase.js";
+  import { onAuthStateChanged, signOut }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { doc, getDoc }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  onAuthStateChanged(auth, async user => {
+    if (!user) {
       window.location.href = "../login.html";
+      return;
     }
-  </script>
+
+    document.getElementById("pEmail").innerText = user.email;
+
+    const snap = await getDoc(doc(db, "users", user.uid));
+    if (!snap.exists()) return;
+
+    const data = snap.data();
+
+    document.getElementById("pName").innerText = data.name || "User";
+    document.getElementById("pPhone").innerText = data.phone || "-";
+    document.getElementById("pRole").innerText = data.role || "resident";
+    document.getElementById("pFlat").innerText = data.flat || "G-1";
+
+    document.getElementById("avatar").innerText =
+      (data.name || "U")[0].toUpperCase();
+  });
+
+  window.logout = function () {
+    signOut(auth).then(() => {
+      window.location.href = "../login.html";
+    });
+  };
+
+  window.goBack = function () {
+    history.length > 1
+      ? history.back()
+      : window.location.href = "../dashboard.html";
+  };
+</script>
 
 </body>
 </html>

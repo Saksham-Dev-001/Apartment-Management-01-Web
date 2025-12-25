@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notifications | VIRAT-7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+<header class="app-header">
+  <button class="icon-circle" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <h3 class="page-title">Notifications</h3>
+  <div style="width:42px"></div>
+</header>
+
+<main id="notifyList" style="padding:16px"></main>
+
+<script type="module">
+import { auth, db } from "../js/firebase.js";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  onSnapshot,
+  updateDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onAuthStateChanged } from
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const list = document.getElementById("notifyList");
+
+onAuthStateChanged(auth, user => {
+  if (!user) location.href = "../login.html";
+
+  const q = query(
+    collection(db, "notifications"),
+    where("uid", "in", [user.uid, "all"]),
+    orderBy("timestamp", "desc")
+  );
+
+  onSnapshot(q, snap => {
+    list.innerHTML = "";
+    snap.forEach(d => {
+      const n = d.data();
+      list.innerHTML += `
+        <div class="notify-card ${n.read ? "" : "unread"}"
+          onclick="markRead('${d.id}')">
+          <h4>${n.title}</h4>
+          <p>${n.message}</p>
+        </div>
+      `;
+    });
+  });
+});
+
+window.markRead = async (id) => {
+  await updateDoc(doc(db, "notifications", id), {
+    read: true
+  });
+};
+</script>
+
+</body>
+</html>

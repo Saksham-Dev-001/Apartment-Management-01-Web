@@ -1,0 +1,190 @@
+.admin-page {
+  display: flex;
+  height: calc(100vh - 56px);
+}
+
+.admin-sidebar {
+  width: 200px;
+  background: #f3f4f6;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-sidebar div {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: white;
+}
+
+.admin-sidebar div:hover {
+  background: #e0e7ff;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.admin-section {
+  display: none;
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.admin-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-box input,
+.admin-box select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#userList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 10px;
+  align-items: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.user-row:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.user-row select {
+  margin-left: 10px;
+}
+
+/* MOBILE MENU BUTTON */
+.menu-btn {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .admin-page {
+    flex-direction: column;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60vh;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    border-radius: 20px 20px 0 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .admin-sidebar.show {
+    transform: translateY(0);
+  }
+
+  .admin-content {
+    padding: 15px;
+  }
+
+  .admin-sidebar div {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .admin-box {
+    grid-template-columns: 1fr;
+  }
+
+  .user-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* TAP FEEDBACK */
+button,
+.admin-sidebar div {
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+button:active,
+.admin-sidebar div:active {
+  transform: scale(0.97);
+  background: #e5e7eb;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-section {
+  animation: fadeUp 0.3s ease;
+}
+
+/* SEARCH & FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-bar input,
+.filter-bar select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  flex: 1;
+}
+
+/* MOBILE STACK */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+  }
+}
+
