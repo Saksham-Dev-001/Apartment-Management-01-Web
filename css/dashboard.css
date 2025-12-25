@@ -273,3 +273,20 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.logout-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #c62828;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-btn:active {
+  background: #b71c1c;
+}

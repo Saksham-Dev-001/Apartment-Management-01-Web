@@ -17,6 +17,8 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
+  
+  <link rel="stylesheet" href="../css/logout.css">
 
   <!-- Base CSS -->
   <style>
@@ -213,7 +215,7 @@
   <nav id="sideMenu" class="side-menu">
     <div class="menu-top">
       <h4>Saksham Sharma</h4>
-      <small>Flat A-101</small>
+      <small>Flat G-1</small>
     </div>
 
     <div class="menu-list">
@@ -238,14 +240,18 @@
     </div>
 
     <div class="menu-item logout" onclick="logout()">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    <button id="logoutBtn" class="logout-btn">
+  🚪 Logout
+</button>
     </div>
   </nav>
 
 <!-- HEADER -->
   <header>
     <div class="header-left">
-      <img src="assets/logo.png" alt="VIRAT-7" />
+      <div class="app-logo">
+  VIRAT <span>7</span>
+</div>
     </div>
 
     <div class="header-right">
@@ -265,7 +271,7 @@
   <main>
     <div class="user-info">
       <h3>Saksham Sharma</h3>
-      <small>Flat A-101</small>
+      <small>Flat G-1</small>
     </div>
 
     <div class="cards">
@@ -396,6 +402,26 @@ onAuthStateChanged(auth, user => {
 
     } catch (err) {
       console.error("Dashboard load error:", err);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        // clear auth data
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // EXACT popup like your screenshot
+        alert("Logged out");
+
+        // redirect
+        window.location.replace("login.html");
+      });
     }
   });
 </script>
